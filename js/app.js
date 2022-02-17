@@ -43,11 +43,17 @@ function getTotalIncome(){
 //total balance func
 function getTotalBalance(){
     const expenseAmount = getExpenseAmount();
-
     //update balance
     const totalIncome = getTotalIncome();
-    const totalBalance = totalIncome - expenseAmount;
-    return totalBalance;
+    const errorMessage = document.getElementById('error-message');
+    // validation
+    if(totalIncome >= expenseAmount){
+        const totalBalance = totalIncome - expenseAmount;
+        return totalBalance;
+    }else{
+        errorMessage.innerText = 'Expense amount can not over total amount!'
+    }
+    
 }
 
 
