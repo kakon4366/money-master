@@ -44,8 +44,6 @@ function getTotalIncome(){
 function getTotalBalance(){
     const expenseAmount = getExpenseAmount();
 
-    //validation 
-
     //update balance
     const totalIncome = getTotalIncome();
     const totalBalance = totalIncome - expenseAmount;
@@ -57,14 +55,23 @@ function getTotalBalance(){
 document.getElementById('calculate-btn').addEventListener('click', function(){
     //total expense amount
     const expenseAmount = getExpenseAmount();
-    //display total expense amount
-    const totalExpenseText = document.getElementById('total-expense');
-    totalExpenseText.innerText = expenseAmount;
+
+    // validation expense amount update
+    if(typeof expenseAmount != 'undefined'){
+        //display total expense amount
+        const totalExpenseText = document.getElementById('total-expense');
+        totalExpenseText.innerText = expenseAmount;
+    }
 
     //display total amount
     const totalBalanceText = document.getElementById('total-balance');
     const totalBalance = getTotalBalance();
-    totalBalanceText.innerText = totalBalance;
+
+    // validation balance 
+    if(isNaN(totalBalance) == false){
+        totalBalanceText.innerText = totalBalance;
+    }
+
 })
 
 //saving handler
