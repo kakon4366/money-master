@@ -21,7 +21,6 @@ function getExpenseAmount(){
         errorMessage.innerText = '';
         return expenseTotalAmount;
     }
-
 }
 
 //total income amount func
@@ -52,10 +51,8 @@ function getTotalBalance(){
         return totalBalance;
     }else{
         errorMessage.innerText = 'Expense amount can not over total amount!'
-    }
-    
+    }  
 }
-
 
 //calculate handler
 document.getElementById('calculate-btn').addEventListener('click', function(){
@@ -111,8 +108,6 @@ document.getElementById('saving-btn').addEventListener('click', function(){
         }else{
             savingError.innerText = 'You cant saving over total balance!';
         }
-        
     }
-
 });
 
