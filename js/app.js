@@ -74,8 +74,7 @@ document.getElementById('calculate-btn').addEventListener('click', function(){
     if(isNaN(totalBalance) == false){
         totalBalanceText.innerText = totalBalance;
     }
-
-})
+});
 
 //saving handler
 document.getElementById('saving-btn').addEventListener('click', function(){
