@@ -81,7 +81,7 @@ img{
 .saveing-input{
     width: 50%;
 }
-#error-message{
+#error-message, #saving-error{
     color: rgb(180, 6, 6);
 }
 

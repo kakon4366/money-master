@@ -83,19 +83,36 @@ document.getElementById('calculate-btn').addEventListener('click', function(){
 //saving handler
 document.getElementById('saving-btn').addEventListener('click', function(){
     const savingPercentage = getInputValue('saving-percentage');
+    const savingError = document.getElementById('saving-error');
     const totalIncome = getTotalIncome();
-    //total saving by percentage
-    const totalSavingParcentage = (totalIncome * savingPercentage) / 100;
-    
-    //update saving amount
-    const savingAmountText = document.getElementById('saving-amount');
-    savingAmountText.innerText = totalSavingParcentage;
-
-    // update remaining balance 
-    const remainingText = document.getElementById('remaning-amount');
     const balance = getTotalBalance();
-    const remainingBalance = balance - totalSavingParcentage;
-    remainingText.innerText = remainingBalance;
+
+    // validation saving percentage
+    if(isNaN(savingPercentage)){
+        savingError.innerText = 'Percentage only number!';
+    }else if(savingPercentage < 0){
+        savingError.innerText = 'Percentage can not under 0!';
+    }else{
+        //total saving by percentage
+        const totalSavingParcentage = (totalIncome * savingPercentage) / 100;
+        savingError.innerText = '';
+
+        // remaining Balance validation 
+        if(totalSavingParcentage < balance){
+            //update saving amount
+            const savingAmountText = document.getElementById('saving-amount');
+            savingAmountText.innerText = totalSavingParcentage;
+
+            // update remaining balance 
+            const remainingText = document.getElementById('remaning-amount');
+
+            const remainingBalance = balance - totalSavingParcentage;
+            remainingText.innerText = remainingBalance;
+        }else{
+            savingError.innerText = 'You cant saving over total balance!';
+        }
+        
+    }
 
 });
 
