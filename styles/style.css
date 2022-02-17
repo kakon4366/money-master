@@ -81,6 +81,9 @@ img{
 .saveing-input{
     width: 50%;
 }
+#error-message{
+    color: rgb(180, 6, 6);
+}
 
 /* responsive  */
 @media only screen and (max-width: 768px) {

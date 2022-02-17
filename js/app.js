@@ -9,21 +9,43 @@ function getExpenseAmount(){
     const foodAmount = getInputValue('food-total');
     const rentAmount = getInputValue('rent-total');
     const othersAmount = getInputValue('others-total');
+    const errorMessage = document.getElementById('error-message');
 
-   const expenseTotalAmount = foodAmount + rentAmount + othersAmount;
-   return expenseTotalAmount;
+    //validation expense amount
+    if(isNaN(foodAmount) || isNaN(rentAmount) || isNaN(othersAmount)){
+        errorMessage.innerText = 'Expense Amount only Number!';
+    }else if(foodAmount < 0 || rentAmount < 0 || othersAmount < 0){
+        errorMessage.innerText = 'Expense Amount can not under 0!';
+    }else{
+        const expenseTotalAmount = foodAmount + rentAmount + othersAmount;
+        errorMessage.innerText = '';
+        return expenseTotalAmount;
+    }
+
 }
 
 //total income amount func
 function getTotalIncome(){
+    const errorMessage = document.getElementById('error-message');
     //total income amount
     const incomeAmount = getInputValue('income-total');
-    return incomeAmount;
+
+    //validation
+    if(isNaN(incomeAmount)){
+        errorMessage.innerText = 'Income amount only number!'; 
+    }else if(incomeAmount < 0){
+        errorMessage.innerText = 'Income amount can not under 0!';
+    }else{
+        return incomeAmount;
+    }
 }
 
 //total balance func
 function getTotalBalance(){
     const expenseAmount = getExpenseAmount();
+
+    //validation 
+
     //update balance
     const totalIncome = getTotalIncome();
     const totalBalance = totalIncome - expenseAmount;
