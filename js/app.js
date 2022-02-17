@@ -44,23 +44,22 @@ function getTotalBalance(){
     const expenseAmount = getExpenseAmount();
     //update balance
     const totalIncome = getTotalIncome();
-    const errorMessage = document.getElementById('error-message');
-    // validation
-    if(totalIncome >= expenseAmount){
-        const totalBalance = totalIncome - expenseAmount;
-        return totalBalance;
-    }else{
-        errorMessage.innerText = 'Expense amount can not over total amount!'
-    }  
+    const totalBalance = totalIncome - expenseAmount;
+    return totalBalance;
 }
 
 //calculate handler
 document.getElementById('calculate-btn').addEventListener('click', function(){
     //total expense amount
     const expenseAmount = getExpenseAmount();
+    const totalIncome = getTotalIncome();
+    const errorMessage = document.getElementById('error-message');
 
+    debugger;
     // validation expense amount update
-    if(typeof expenseAmount != 'undefined'){
+    if(typeof expenseAmount == 'undefined' || totalIncome < expenseAmount){
+        errorMessage.innerText = 'Expense amount can not over total amount!';
+    }else{
         //display total expense amount
         const totalExpenseText = document.getElementById('total-expense');
         totalExpenseText.innerText = expenseAmount;
@@ -72,7 +71,11 @@ document.getElementById('calculate-btn').addEventListener('click', function(){
 
     // validation balance 
     if(isNaN(totalBalance) == false){
-        totalBalanceText.innerText = totalBalance;
+        if(totalIncome > expenseAmount){
+            totalBalanceText.innerText = totalBalance;
+        }else{
+            errorMessage.innerText = 'Expense amount can not over total amount!';
+        }
     }
 });
 
